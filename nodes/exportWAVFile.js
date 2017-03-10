@@ -25,7 +25,7 @@
             var crateFileName = filename + ".wav";
 
             var payloadString = JSON.stringify(msg.payload)
-            var payload = JSON.parse(jsonString);
+            var payload = JSON.parse(payloadString);
 
             var data = createWavData(payload.data, context.sampleRate);
 

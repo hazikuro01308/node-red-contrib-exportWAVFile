@@ -22,12 +22,6 @@
               node.warn('No filename specified');
           } else {
 
-            fs.access(path.dirname(config.file), fs.W_OK, e => {
-              if (e) {
-                return this.preFlightError(e);
-              }
-            });
-
               //. WAVファイルを生成する
             var crateFileName = filename + ".wav";
 
@@ -40,7 +34,7 @@
                 node.error(err, msg);
             });
 
-            msg.payload = "/" + crateFileName;
+            msg.payload = crateFileName;
             node.send(msg);
           }
         });

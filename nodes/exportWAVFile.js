@@ -6,15 +6,15 @@
         RED.nodes.createNode(this, config);
         var node = this;
 
-      /*
+      
         this.filename = config.filename || "";
 
         var AudioContext = require('web-audio-api').AudioContext
-        , context = new AudioContext*/
+        , context = new AudioContext;
 
         this.on('input', function (msg) {
 
-          /*
+          
           //ファイル名が設定されているか確認
           var filename = msg.filename || this.filename;
 
@@ -22,24 +22,26 @@
               node.warn('No filename specified');
           } else {
               //. WAVファイルを生成する
-              var crateFileName = filename + ".wav";
-              var data = msg.payload;
+            var crateFileName = filename + ".wav";
 
-              fs.writeFile(crateFileName, data, function (err) {
-                  node.error(err, msg);
-              });
+            var jsonString = JSON.stringify(msg.payload)
+            var parse = JSON.parse(jsonString);
 
-              msg.payload = str2;
-              node.send(msg);
-          }*/
+            var data = createWavData(parse, context.sampleRate);
 
-          node.send(msg);
+            fs.writeFile(crateFileName, data, function (err) {
+                node.error(err, msg);
+            });
+
+            msg.payload = "/" + crateFileName;
+            node.send(msg);
+          }
         });
       
     }
 
-    /*
-    function createWavData(data){
+    
+    function createWavData(data, sampleRate) {
         var buffer = new ArrayBuffer(44 + data.length * 2);
         var view = new DataView(buffer);
         writeString(view, 0, 'RIFF');  // RIFFヘッダ
@@ -70,7 +72,7 @@
             var s = Math.max(-1, Math.min(1, input[i]));
             output.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
         }
-    }*/
+    }
 
     //. ReverseNode 関数を実行する exportWAVFile ノードとして登録
     RED.nodes.registerType("exportWAVFile", exportWAVFile);

@@ -24,10 +24,10 @@
               //. WAVファイルを生成する
             var crateFileName = filename + ".wav";
 
-            var jsonString = JSON.stringify(msg.payload)
-            var parse = JSON.parse(jsonString);
+            var payloadString = JSON.stringify(msg.payload)
+            var payload = JSON.parse(jsonString);
 
-            var data = createWavData(parse, context.sampleRate);
+            var data = createWavData(payload.data, context.sampleRate);
 
             fs.writeFile(crateFileName, data, function (err) {
                 node.error(err, msg);

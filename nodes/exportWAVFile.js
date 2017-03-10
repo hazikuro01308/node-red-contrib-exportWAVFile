@@ -73,5 +73,5 @@
     }*/
 
     //. ReverseNode 関数を実行する exportWAVFile ノードとして登録
-    RED.nodes.registerType("exportWAVFile", ReverseNode);
+    RED.nodes.registerType("exportWAVFile", exportWAVFile);
 }

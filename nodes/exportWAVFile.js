@@ -16,11 +16,18 @@
 
           
           //ファイル名が設定されているか確認
-          var filename = msg.filename || this.filename;
+          var filename = "./" + msg.filename || this.filename;
 
           if (filename === '') {
               node.warn('No filename specified');
           } else {
+
+            fs.access(path.dirname(config.file), fs.W_OK, e => {
+              if (e) {
+                return this.preFlightError(e);
+              }
+            });
+
               //. WAVファイルを生成する
             var crateFileName = filename + ".wav";
 

@@ -3,7 +3,6 @@
 
     //. ノードの処理内容
     function ExportWAV(config) {
-
         RED.nodes.createNode(this, config);
         var node = this;
 
@@ -14,26 +13,31 @@
 
         this.on('input', function (msg) {
 
-            //ファイル名が設定されているか確認
-            var filename = msg.filename || this.filename;
+          /*
+          //ファイル名が設定されているか確認
+          var filename = msg.filename || this.filename;
 
-            if (filename === '') {
-                node.warn('No filename specified');
-            } else {
-                //. WAVファイルを生成する
-                var crateFileName = filename + ".wav";
-                var data = msg.payload;
+          if (filename === '') {
+              node.warn('No filename specified');
+          } else {
+              //. WAVファイルを生成する
+              var crateFileName = filename + ".wav";
+              var data = msg.payload;
 
-                fs.writeFile(crateFileName, data, function (err) {
-                    node.error(err, msg);
-                });
+              fs.writeFile(crateFileName, data, function (err) {
+                  node.error(err, msg);
+              });
 
-                msg.payload = str2;
-                node.send(msg);
-            }
+              msg.payload = str2;
+              node.send(msg);
+          }*/
+
+          node.send(msg);
         });
+      
     }
 
+    /*
     function createWavData(data){
         var buffer = new ArrayBuffer(44 + data.length * 2);
         var view = new DataView(buffer);
@@ -65,8 +69,8 @@
             var s = Math.max(-1, Math.min(1, input[i]));
             output.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
         }
-    }
+    }*/
 
-    //. ReverseNode 関数を実行する reverse ノードとして登録
-    RED.nodes.registerType("reverse", ReverseNode);
+    //. ReverseNode 関数を実行する exportWAVFile ノードとして登録
+    RED.nodes.registerType("exportWAVFile", ReverseNode);
 }

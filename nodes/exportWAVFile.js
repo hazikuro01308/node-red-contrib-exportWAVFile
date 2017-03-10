@@ -6,10 +6,11 @@
         RED.nodes.createNode(this, config);
         var node = this;
 
+      /*
         this.filename = config.filename || "";
 
         var AudioContext = require('web-audio-api').AudioContext
-        , context = new AudioContext
+        , context = new AudioContext*/
 
         this.on('input', function (msg) {
 

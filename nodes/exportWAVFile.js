@@ -2,7 +2,7 @@
     var fs = require('fs');
 
     //. ノードの処理内容
-    function ExportWAV(config) {
+    function exportWAVFile(config) {
         RED.nodes.createNode(this, config);
         var node = this;
 

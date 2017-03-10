@@ -11,11 +11,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TakehikoShimojima/node-red-contrib-ambient.git"
+    "url": "git+https://github.com/hazikuro01308/node-red-contrib-exportWAVFile.git"
   },
   "node-red": {
     "nodes": {
-      "exportWAVFile": "exportWAVFile.js"
+      "exportWAVFile": "nodes/exportWAVFile.js"
     }
   },
   "author": "hazikuro",
